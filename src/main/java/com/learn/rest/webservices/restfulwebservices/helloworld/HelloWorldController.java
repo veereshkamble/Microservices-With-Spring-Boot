@@ -1,4 +1,4 @@
-package com.learn.rest.webservices.restfulwebservices;
+package com.learn.rest.webservices.restfulwebservices.helloworld;
 
 import org.springframework.web.bind.annotation.*;
 
