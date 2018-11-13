@@ -34,8 +34,5 @@ public class HelloWorldController {
         return new HelloWorldBean(String.format("Hello World Bean!, %s", name));
     }
 
-    @GetMapping(path = "/hello-world-internationalized")
-    public String helloWorldInternationalized(@RequestHeader(name="Accept-Language", required=false) Locale locale) {
-        return messageSource.getMessage("good.morning.message", null, locale);
-    }
+
 }
