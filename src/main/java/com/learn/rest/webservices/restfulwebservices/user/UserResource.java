@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
@@ -35,7 +36,7 @@ public class UserResource {
     // input - deatils of the users
     // output - CREATED and Return the created URI
     @PostMapping("/users")
-    public ResponseEntity<Object> ceateUser(@RequestBody User user) {
+    public ResponseEntity<Object> ceateUser(@Valid @RequestBody User user) {
         User savedUser = service.save(user);
 
         // return status CREATED
@@ -45,6 +46,12 @@ public class UserResource {
         return ResponseEntity.created(location).build();
     }
 
+    @DeleteMapping("/users/{id}")
+    public void deleteUser(@PathVariable int id) {
+        User user = service.deleteById(id);
 
-
+        if(user == null) {
+            throw new UserNotFoundException("id-" + id);
+        }
+    }
 }
